@@ -1,0 +1,21 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  January 10th 2010 7:45:46 PM PST                             */
+/*      Machine:  10.16.140.106                                                */
+/*       Source:  Backing Store                                                */
+/*     Location:  js/templates/UIFormButton.js h:5lode4eb                      */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  js/templates/UIFormButton.js                                 */
+
+if (window.CavalryLogger) { CavalryLogger.start_js(["js\/templates\/UIFormButton.js"]); }
+
+function UIFormButton(a){this.root=null;this.input=null;this.parent.construct(this,URI('/templates/UIFormButton.tmpl'));this.setValue(a);this.setOnclick(bagofholding);this.setColor(UIActionButton.colorGray);Event.listen(this.input,'click',this._click.bind(this));}UIFormButton.extend('TemplateObject');UIFormButton.prototype={setName:function(a){this.input.setAttribute('name',a);return this;},setValue:function(a){this.input.setAttribute('value',a);return this;},setColor:function(a){CSS.removeClass(this.root,'UIButton_Gray');CSS.removeClass(this.root,'UIButton_Blue');CSS.removeClass(this.root,'UIButton_Green');CSS.addClass(this.root,'UIButton_'+a);return this;},setOnclick:function(a){this._onclick=a;return this;},getNodes:function(){return [this.root];},_click:function(){return this._onclick();}};
+
+if (window.Bootloader) { Bootloader.done(["js\/templates\/UIFormButton.js"]); }
+/*
+     FILE ARCHIVED ON 00:23:41 Feb 12, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 22:07:03 Jul 26, 2017.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/

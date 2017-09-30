@@ -1,0 +1,21 @@
+/*    HTTP Host:  static.ak.fbcdn.net                                          */
+/*    Generated:  January 10th 2010 7:45:46 PM PST                             */
+/*      Machine:  10.16.139.109                                                */
+/*       Source:  Backing Store                                                */
+/*     Location:  js/70kkfludoq8s0kk0.pkg.js h:ascg7v9y                        */
+/*       Locale:  nu_ll                                                        */
+/*         Path:  js/70kkfludoq8s0kk0.pkg.js                                   */
+
+if (window.CavalryLogger) { CavalryLogger.start_js(["js\/70kkfludoq8s0kk0.pkg.js"]); }
+
+Arbiter.inform("template\/registerTemplate", {"name":"\/templates\/UIFormButton.tmpl","template":"\n<span bindPoint=\"root\" class=\"UIButton UIButton_Large UIFormButton\">\n  <input class=\"UIButton_Text\" type=\"button\" bindPoint=\"input\" \/>\n<\/span>\n"}, Arbiter.BEHAVIOR_PERSISTENT);
+
+if (window.Bootloader) { Bootloader.done(["js\/70kkfludoq8s0kk0.pkg.js"]); }
+/*
+     FILE ARCHIVED ON 00:23:32 Feb 12, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 22:07:04 Jul 26, 2017.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
