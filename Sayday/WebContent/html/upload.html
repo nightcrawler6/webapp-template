@@ -5,13 +5,13 @@
 <title>Web Emulation Enqueue</title>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="js/upload.js"></script>
 	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">	
 	<link rel="stylesheet" href="html/3.3.7/css/bootstrap.min.css">
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 	<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+	<script src="js/upload.js"></script>
 </head>
 
 <body>
@@ -36,8 +36,18 @@
 			<h2>
 	  			Please drag and drop your emulation files over to the space below:
 			</h2>
-	
-			<form id="upload-form" action="http://localhost:8080/Sayday/UploadServlet" class="dropzone"></form>
+			<form id="myDropzone" action="UploadServlet" class="dropzone"></form>
+			<script>
+			Dropzone.options.myDropzone = {
+					addRemoveLinks: true,
+					init: function () {},
+					removedfile: function(file){
+						var name = file.name;
+						alert('going to remove ' + name);
+						return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0
+					}
+			};
+			</script>
 			<br>
 			<button id='upload-submit-all' type="button" class="btn btn-primary btn-block">Submit</button>
 		</div>

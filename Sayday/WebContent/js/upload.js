@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	
-	
 	$("#right-toggle").change(function() {
 		  $('#context1').toggle();
 		  $('#context2').toggle();
