@@ -56,10 +56,10 @@ public class HTTPWrapper {
 	}
 	
 	
-	public <T> T sendPOST(String uri, HashMap<String,String> keyValuePairs,List<NameValuePair> postParams, T t) throws ClientProtocolException, IOException{
+	public <T> T sendPOST(String uri, List<NameValuePair> headerParams, List<NameValuePair> postParams, T t) throws ClientProtocolException, IOException{
 		HttpPost post = new HttpPost(buildUri(uri));
-		for(Entry<String,String> headerPair: keyValuePairs.entrySet()){
-			post.setHeader(headerPair.getKey(), headerPair.getValue());
+		for(NameValuePair headerPair: headerParams){
+			post.setHeader(headerPair.getName(), headerPair.getValue());
 		}
 		post.setEntity(new UrlEncodedFormEntity(postParams));
 		HttpResponse response = mClient.execute(post);
@@ -76,13 +76,13 @@ public class HTTPWrapper {
 		return parsed;
 	}
 	
-	public static void main(String[] args) throws ClientProtocolException, IOException{
+/*	public static void main(String[] args) throws ClientProtocolException, IOException{
 		HTTPWrapper wrapper = new HTTPWrapper("https", "jsonplaceholder.typicode.com", "443");
 		List<NameValuePair> postParams = new ArrayList<>();
 		postParams.add(new BasicNameValuePair("id", "value2"));
 		JsonObject sendPOST = wrapper.sendPOST("posts", new HashMap<>(), postParams, new JsonObject());
 		System.out.println(sendPOST);
-	}
+	}*/
 	
 	private String buildUri(String api){
 		return String.format("%s://%s:%s/%s", 

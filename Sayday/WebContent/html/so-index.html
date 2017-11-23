@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>SO Page</title>
+	<link rel="stylesheet" href="html/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="js/so-index.js"></script>
+	<link rel="stylesheet" href="html/css/so-index.css">
+</head>
+<body>
+	<h1 style="text-align:center;"><strong>Welcome to StackOverflow Index</strong></h1><hr>
+	<div style="width:80%; margin:auto;">
+		<div class="panel panel-primary" style="text-align:center; margin:auto">
+				<div class="panel-heading" id=QnA>
+					<h3><strong>What do you need to know?</strong></h3>
+				</div>
+				<div class="panel-body">
+					<div id="input-bar" style="width:80%; margin:auto;">
+					    <div class="input-group">
+					      <span class="input-group-btn">
+					        <button id="submit-button" class="btn btn-success" type="button">Go!</button>
+					      </span>
+					      <input id="question-holder" type="text" class="form-control" placeholder="Ask your question here...">
+					    </div>
+					  </div>
+				</div>		
+		</div>
+		<br><hr style="">
+		<div id="results-container"></div>
+	</div>
+</body>
+</html>
