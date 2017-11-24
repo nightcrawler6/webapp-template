@@ -9,8 +9,35 @@
 	<link rel="stylesheet" href="html/css/so-index.css">
 </head>
 <body>
-	<h1 style="text-align:center;"><strong>Welcome to StackOverflow Index</strong></h1><hr>
-	<div style="width:80%; margin:auto;">
+	<div id="loader-div">
+		<div id="overlay" class="overlay"></div>
+	  	<div id="modal-square" class="modal"></div>
+	  	<div id="spinner" class="loader"></div>
+  	</div>
+	<!-- <h1 style="text-align:center;"><strong>Welcome to StackOverflow Index</strong></h1><hr> -->
+	<img src="html/media/so-express.png" height=100 style="display: block; margin: 0 auto; padding-top: 5px"></img>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span> 
+	      </button>
+	      <a class="navbar-brand" href="#">SOE</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#">Page 1</a></li>
+	        <li><a href="#">Page 2</a></li> 
+	        <li><a href="#">Page 3</a></li> 
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	<hr>
+	<div id="main-header" style="width:80%; margin:auto; position: sticky; top: 0; padding-top:8px; z-index: 0">
 		<div class="panel panel-primary" style="text-align:center; margin:auto">
 				<div class="panel-heading" id=QnA>
 					<h3><strong>What do you need to know?</strong></h3>
@@ -26,8 +53,9 @@
 					  </div>
 				</div>		
 		</div>
-		<br><hr style="">
-		<div id="results-container"></div>
+		<br>
 	</div>
+	<hr style="">
+	<div id="results-container" style="width:75%; margin:auto;"></div>
 </body>
 </html>
