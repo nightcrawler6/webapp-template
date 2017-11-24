@@ -5,6 +5,11 @@ $(document).ready(function(){
 		if(scroll_current/document_height<=0.05) {
 		   $("#main-header").css('position', 'sticky');
 		}
+		else{
+			if($('#toggle-info').css('display')=='none'){
+				$('#toggle-info').css('display','block')
+			}
+		}
 	});
 	
 	if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -18,12 +23,12 @@ $(document).ready(function(){
 				else{
 					$("#main-header").fadeOut(function(){
 						$("#main-header").css('position', 'relative');
-						$("#main-header").fadeIn();					
+						$("#main-header").fadeIn();	
 					});
 				}
 			}
 		});
-		var info = $('<h4>(Press ESC to toggle view)</h4>');
+		var info = $('<h4 id="toggle-info">(Press ESC to toggle view)</h4>');
 		$('#QnA').append(info);
 	}
 	else{

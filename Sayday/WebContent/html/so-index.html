@@ -2,11 +2,12 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>SO Page</title>
+	<title>Stack Overflow Express</title>
 	<link rel="stylesheet" href="html/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="js/so-index.js"></script>
 	<link rel="stylesheet" href="html/css/so-index.css">
+	<link rel="icon" href="html/media/st-icon.png">
 </head>
 <body>
 	<div id="loader-div">
@@ -24,37 +25,39 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span> 
 	      </button>
-	      <a class="navbar-brand" href="#">SOE</a>
+	      <a class="navbar-brand">Index</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home</a></li>
-	        <li><a href="#">Page 1</a></li>
-	        <li><a href="#">Page 2</a></li> 
-	        <li><a href="#">Page 3</a></li> 
+	        <li id="stack-sec" class="active"><a href="#"><img class="icon-nav" src='html/media/st-icon.png'></img>Stack Overflow</a></li>
+	        <li id="math-sec"><a href="work.html"><img class="icon-nav" src='html/media/math-icon.png'></img>Math Exchange</a></li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
 	<hr>
-	<div id="main-header" style="width:80%; margin:auto; position: sticky; top: 0; padding-top:8px; z-index: 0">
-		<div class="panel panel-primary" style="text-align:center; margin:auto">
-				<div class="panel-heading" id=QnA>
-					<h3><strong>What do you need to know?</strong></h3>
-				</div>
-				<div class="panel-body">
-					<div id="input-bar" style="width:80%; margin:auto;">
-					    <div class="input-group">
-					      <span class="input-group-btn">
-					        <button id="submit-button" class="btn btn-success" type="button">Go!</button>
-					      </span>
-					      <input id="question-holder" type="text" class="form-control" placeholder="Ask your question here...">
-					    </div>
-					  </div>
-				</div>		
+	<section id="so-section">
+		<div id="main-header" style="width:80%; margin:auto; position: sticky; top: 0; padding-top:8px; z-index: 0">
+			<div class="panel panel-primary" style="text-align:center; margin:auto">
+					<div class="panel-heading" id=QnA>
+						<h3><strong>What do you need to know?</strong></h3>
+					</div>
+					<div class="panel-body">
+						<div id="input-bar" style="width:80%; margin:auto;">
+						    <div class="input-group">
+						      <span class="input-group-btn">
+						        <button id="submit-button" class="btn btn-success" type="button">
+						        	<span class="glyphicon glyphicon-ok" aria-hidden="true" style="margin-top: 10px"></span>
+						        </button>
+						      </span>
+						      <input id="question-holder" type="text" class="form-control" placeholder="Ask your question here...">
+						    </div>
+						  </div>
+					</div>		
+			</div>
+			<br>
 		</div>
-		<br>
-	</div>
+	</section>
 	<hr style="">
 	<div id="results-container" style="width:75%; margin:auto;"></div>
 </body>
