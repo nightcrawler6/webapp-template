@@ -48,7 +48,7 @@ class Surfer:
         return best_answer
 
     def get_question_description(self):
-        question_xpath = '//td[@class="postcell"]//p'
+        question_xpath = '//td[@class="postcell"]//div[@class="post-text"]'
         question_element = self.sourceObject.xpath(question_xpath)
         question = ""
         if len(question_element) == 0:
