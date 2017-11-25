@@ -1,16 +1,6 @@
 $(document).ready(function(){
-	$(document).scroll(function() {
-		var scroll_current = $(document).scrollTop();
-		var document_height = $(document).height();
-		if(scroll_current/document_height<=0.1) {
-		   $("#main-header").css('position', 'sticky');
-		}
-		else{
-			if($('#toggle-info').css('display')=='none'){
-				$('#toggle-info').css('display','block')
-			}
-		}
-	});
+	attachScrollEvent();
+	$('#question-holder').focus();
 	
 	if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		$(document).keyup(function(event){
@@ -51,7 +41,7 @@ $(document).ready(function(){
 		var data = {}
 		data["Action"] = "ask";
 		data["Question"] = question;
-		$('#main-header').css('z-index', 18);
+		$('#main-header').css('z-index', 5);
 		$('#loader-div').fadeIn();
 		$.ajax({
           type: "POST",
@@ -87,12 +77,16 @@ $(document).ready(function(){
         	  panelObject.append(panelBody);
         	  $("#results-container").prepend(panelObject);
         	  var body = $("html, body");
-        	  body.stop().animate({scrollTop:0}, 500, 'swing');
+        	  $(document).off('scroll');
+        	  body.stop().animate({scrollTop:$(panelObject).offset().top}, { complete: function(){ attachScrollEvent();}}, 500, 'swing');
+        	  $("#main-header").css('position', 'relative');
         	  restoreVisibility();
+        	  $('#question-holder').focus();
           },
           error: function(){
         	  alert('Request failure');
         	  restoreVisibility();
+        	  $('#question-holder').focus();
           }
         });
 	})
@@ -101,4 +95,19 @@ $(document).ready(function(){
 function restoreVisibility(){
 	$('#loader-div').fadeOut();
 	$('#main-header').css('z-index', 18);
+}
+
+function attachScrollEvent(){
+	$(document).scroll(function() {
+		var scroll_current = $(document).scrollTop();
+		var document_height = $(document).height();
+		if(scroll_current<=$('.panel-primary').offset().top) {
+		   $("#main-header").css('position', 'sticky');
+		}
+		else{
+			if($('#toggle-info').css('display')=='none'){
+				$('#toggle-info').css('display','block')
+			}
+		}
+	});
 }

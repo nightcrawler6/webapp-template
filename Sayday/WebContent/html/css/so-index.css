@@ -15,7 +15,7 @@ strong {
   margin-left: -61px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
-  z-index: 20;
+  z-index: 26;
 }
 
 @-webkit-keyframes spin {
@@ -41,7 +41,6 @@ strong {
     background-color: #242a2f94;
     border-radius: 30px;
     text-align: center;
-    z-index: 18; /* 1px higher than the overlay layer */
     display: block;
 }
 
@@ -81,7 +80,6 @@ strong {
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.5);
-    z-index: 12;
 }
 
 hr {
@@ -92,7 +90,7 @@ hr {
 
 #loader-div {
 	display: none;
-	z-index: 25;
+	z-index: 5;
 }
 
 .icon-nav{
