@@ -62,8 +62,8 @@ $(document).ready(function(){
         	  $('#question-holder').val('');
         	  var panelObject = $("<div class='panel panel-success'></div>");
         	  var panelHeading = $("<div class='panel-heading'></div>");
-        	  var titleHeading = $("<h1 class='panel-title'>" + response.title + "</h1>");
-        	  var questionHeading = $("<h3>" + response.question+ "</h3>")
+        	  var titleHeading = $("<h1 class='panel-title' style='font-size: 30px;'>" + response.title + "</h1>");
+        	  var questionHeading = $("<h3 style='font-size:20px;'>" + response.question+ "</h3>")
         	  var XGlyph = $("<span class='glyphicon glyphicon-remove' style='float:right; cursor:pointer;'></span>");
         	  XGlyph.on('click', function(event){
         		 var initiator = event.target;
@@ -73,6 +73,15 @@ $(document).ready(function(){
         	  titleHeading.append(XGlyph);
         	  var panelBody = $("<div class='panel-body'>" + response.answer + "</div>")
         	  panelHeading.append(titleHeading);
+        	  var tags = response.tags;
+        	  var tag_container = $('<div></div>');
+        	  
+        	  for(var i in tags){
+        		  var tag = $('<span class="badge badge-default">' + tags[i] + '</span>');
+        		  tag_container.append(tag);
+        	  }
+        	  panelHeading.append(tag_container);
+        	  panelHeading.append("<hr>");        	  
         	  panelHeading.append(questionHeading);
         	  panelObject.append(panelHeading);
         	  panelObject.append(panelBody);

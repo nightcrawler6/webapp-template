@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
 
 import hq.misc.basicPerson;
 
@@ -49,13 +51,12 @@ public class SOServlet extends HttpServlet {
 		StringBuilder b = new StringBuilder();
 		switch(action){
 		case "ask":
-			Process p = Runtime.getRuntime().exec(String.format("python C:\\Users\\karim\\git\\Sayday\\WebContent\\SOModule\\Surfer.py %s",
+			Process p = Runtime.getRuntime().exec(String.format("python C:\\Users\\Karim\\git\\webapp-template\\Sayday\\WebContent\\SOModule\\Surfer.py %s",
 					query.get("Question")));
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 			// read the output from the command
 			while ((s = stdInput.readLine()) != null) {
-				System.out.println(s);
 				b.append(s);
 			}
             
@@ -67,7 +68,10 @@ public class SOServlet extends HttpServlet {
 		response.setContentType("application/json");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		PrintWriter out = response.getWriter();
-		JsonObject responseJson = gson.fromJson(b.toString(), JsonObject.class);
+		JsonReader jsonParseReader = new JsonReader(new StringReader(b.toString()));
+		jsonParseReader.setLenient(true);
+		JsonObject responseJson = gson.fromJson(jsonParseReader, JsonObject.class);
+		System.out.println(responseJson.toString());
 		out.print(responseJson);
 		out.flush();
 	}

@@ -100,3 +100,8 @@ hr {
     margin-right: 5px;
     margin-top: -5px;
 }
+.badge{
+    border-radius: 0px;
+    margin-left: 5px;
+    margin-top: 2px;
+}

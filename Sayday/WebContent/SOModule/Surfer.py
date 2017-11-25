@@ -89,6 +89,18 @@ class Surfer:
 				print "Could not fetch search from source, checking redirects..."
         bingo2 = get.url
         return bingo2
+	
+    def get_topic_tags(self):
+	tags_xpath = '//div[@class="post-taglist"]//a'
+	tag_elements = self.sourceObject.xpath(tags_xpath)
+	tags = []
+	if len(tag_elements) == 0:
+		if self.debug:
+			print "No tags for questions"
+		return []
+	for tag_obj in tag_elements:
+		tags.append(tag_obj.text)
+	return tags
 
     def think_it_through(self):
         return None
@@ -114,9 +126,13 @@ so.set_url(lucky_charm)
 mytitle = so.get_title()
 myquestion = so.get_question_description()
 myanswer = so.get_best_answer()
+mytags = so.get_topic_tags()
 overall = {}
-overall['title'] = mytitle
-overall['question'] = myquestion
-overall['answer'] = myanswer
+overall['user-query'] = user.encode("utf-8")
+overall['url'] = lucky_charm.encode("utf-8")
+overall['title'] = mytitle if mytitle is None else mytitle.encode("utf-8")
+overall['question'] = myquestion if myquestion is None else myquestion.encode("utf-8")
+overall['answer'] = myanswer if myanswer is None else myanswer.encode("utf-8")
+overall['tags'] = mytags
 
 print overall
