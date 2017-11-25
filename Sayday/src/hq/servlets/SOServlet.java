@@ -29,14 +29,12 @@ public class SOServlet extends HttpServlet {
      */
     public SOServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -69,7 +67,6 @@ public class SOServlet extends HttpServlet {
 		response.setContentType("application/json");
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		PrintWriter out = response.getWriter();
-		// Assuming your json object is **jsonObject**, perform the following, it will return your json object  
 		JsonObject responseJson = gson.fromJson(b.toString(), JsonObject.class);
 		out.print(responseJson);
 		out.flush();

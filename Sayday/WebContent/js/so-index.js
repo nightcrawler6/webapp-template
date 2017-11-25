@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$(document).scroll(function() {
 		var scroll_current = $(document).scrollTop();
 		var document_height = $(document).height();
-		if(scroll_current/document_height<=0.05) {
+		if(scroll_current/document_height<=0.1) {
 		   $("#main-header").css('position', 'sticky');
 		}
 		else{
@@ -32,6 +32,7 @@ $(document).ready(function(){
 		$('#QnA').append(info);
 	}
 	else{
+		console.log('lol');
 		$("#main-header").css('position', 'relative');
 	}
 	$("#question-holder").keyup(function(event) {
@@ -50,7 +51,7 @@ $(document).ready(function(){
 		var data = {}
 		data["Action"] = "ask";
 		data["Question"] = question;
-		$('#main-header').css('z-index', 14);
+		$('#main-header').css('z-index', 18);
 		$('#loader-div').fadeIn();
 		$.ajax({
           type: "POST",
