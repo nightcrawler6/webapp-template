@@ -74,6 +74,10 @@ $(document).ready(function(){
         	  panelHeading.append("<hr>");        	  
         	  panelHeading.append(questionHeading);
         	  panelObject.append(panelHeading);
+        	  var badgeVal = response['is_top_rated']? 'BEST ANSWER': 'TOP RATED';
+        	  var badgeCol = response['is_top_rated']? '#076506': '#af6d0a';
+        	  var template = $(format('<span style="float: right; margin-right: 10px; margin-top: 10px; background-color: {0}"class="badge badge-default">{1}</span>',badgeCol, badgeVal));
+        	  panelObject.append(template);
         	  panelObject.append(panelBody);
         	  $("#results-container").prepend(panelObject);
         	  var body = $("html, body");
@@ -110,4 +114,13 @@ function attachScrollEvent(){
 			}
 		}
 	});
+}
+
+format = function() {
+	  var s = arguments[0];
+	  for (var i = 0; i < arguments.length - 1; i++) {       
+	    var reg = new RegExp("\\{" + i + "\\}", "gm");             
+	    s = s.replace(reg, arguments[i + 1]);
+	  }
+	  return s;
 }

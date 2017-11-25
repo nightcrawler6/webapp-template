@@ -77,8 +77,8 @@ public class SOServlet extends HttpServlet {
 		JsonReader jsonParseReader = new JsonReader(new StringReader(b.toString()));
 		jsonParseReader.setLenient(true);
 		JsonObject responseJson = gson.fromJson(jsonParseReader, JsonObject.class);
-		/*System.out.println(responseJson.toString());
-		try (FileWriter fw = new FileWriter(LogContext, true);
+		System.out.println(responseJson.toString());
+		/*try (FileWriter fw = new FileWriter(LogContext, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pout = new PrintWriter(bw)) {
 			pout.println(responseJson.toString());
