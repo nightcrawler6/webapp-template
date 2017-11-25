@@ -31,11 +31,7 @@ class Surfer:
         return self.sourceObject
 
     def get_best_answer(self):
-        best_answer_xpath = '//span[@class="' \
-                            'vote-accepted-on load-' \
-                            'accepted-answer-date"]/..' \
-                            '/../../td[@class="answercell"]' \
-                            '/div'
+        best_answer_xpath = '//div[@id="answers" or @class="answer"]//td[@class="answercell"]/div'
 
         best_answer_element = self.sourceObject.xpath(best_answer_xpath)
         best_answer = ""
