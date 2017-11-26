@@ -11,6 +11,8 @@ import hq.testPack.HibernateUtil;
 public class TestJDBC {
 	public static void main(String[] args){
 		try{
+			String property = System.getProperty("os.name");
+			System.out.println(property);
 			//Class.forName("com.mysql.jdbc.Driver");
 			
 			//get a connection

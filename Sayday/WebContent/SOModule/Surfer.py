@@ -121,6 +121,10 @@ if len(sys.argv) != 3:
 user_query_search = sys.argv[1]
 user_query_service = sys.argv[2]
 
+# clean
+user_query_service = user_query_service.replace("\"","")
+user_query_search = user_query_search.replace("\"","")
+
 if user_query_service.lower() not in Utils.method_mapping:
     print '[Error code #2]: invalid or unsupported service!'
     exit(1)

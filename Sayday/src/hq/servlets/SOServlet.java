@@ -47,49 +47,67 @@ public class SOServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletConfig servletConfig = getServletConfig();
-		String context = servletConfig.getServletContext().getRealPath("/");
-		String PythonContext = context + "SOModule\\Surfer.py";
-		String LogContext = context + "SOModule\\logs.txt";
-		BufferedReader reader = request.getReader();
-		JsonObject query = new Gson().fromJson(reader, JsonObject.class);
-		String action = query.get("Action").getAsString();
-		String s = null;
-		StringBuilder b = new StringBuilder();
-		switch(action){
-		case "ask":
-			Process p = Runtime.getRuntime().exec(String.format("python %s %s %s",
-																	PythonContext, 
-																	query.get("Question"),
-																	query.get("Service")));
-			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-			// read the output from the command
-			while ((s = stdInput.readLine()) != null) {
-				b.append(s);
+		try{
+			String delimiter = "\\";
+			String property = System.getProperty("os.name");
+			if(!property.toLowerCase().contains("windows")){
+				delimiter = "/"; 
 			}
-            
-			break;
-		default:
-			break;
-		}
-		response.setStatus(HttpServletResponse.SC_OK);
-		response.setContentType("application/json");
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		PrintWriter out = response.getWriter();
-		JsonReader jsonParseReader = new JsonReader(new StringReader(b.toString()));
-		jsonParseReader.setLenient(true);
-		JsonObject responseJson = gson.fromJson(jsonParseReader, JsonObject.class);
-		System.out.println(responseJson.toString());
-		/*try (FileWriter fw = new FileWriter(LogContext, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pout = new PrintWriter(bw)) {
-			pout.println(responseJson.toString());
-		} catch (IOException e) {
 			
-		}*/
-		out.print(responseJson);
-		out.flush();
+			ServletConfig servletConfig = getServletConfig();
+			String context = servletConfig.getServletContext().getRealPath("/");
+			String PythonContext = String.format("%s%s%s%s", context, "SOModule", delimiter, "Surfer.py");
+			//String LogContext = context + "SOModule\\logs.txt";
+			BufferedReader reader = request.getReader();
+			JsonObject query = new Gson().fromJson(reader, JsonObject.class);
+			String action = query.get("Action").getAsString();
+			String s = null;
+			StringBuilder b = new StringBuilder();
+			System.out.println(String.format("python %s %s %s",
+																		PythonContext, 
+																		query.get("Question"),
+																		query.get("Service")));
+			switch(action){
+			case "ask":
+				String[] execPayload = new String[4];
+				execPayload[0] = String.format("%s", "python");
+				execPayload[1] = String.format("%s", PythonContext);
+				execPayload[2] = String.format("%s", query.get("Question"));
+				execPayload[3] = String.format("%s", query.get("Service"));
+				Process p = Runtime.getRuntime().exec(execPayload);
+				BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	
+				// read the output from the command
+				while ((s = stdInput.readLine()) != null) {
+					b.append(s);
+				}
+	            
+				break;
+			default:
+				break;
+			}
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.setContentType("application/json");
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			PrintWriter out = response.getWriter();
+			JsonReader jsonParseReader = new JsonReader(new StringReader(b.toString()));
+			System.out.println(b.toString());
+			jsonParseReader.setLenient(true);
+			JsonObject responseJson = gson.fromJson(jsonParseReader, JsonObject.class);
+			System.out.println(responseJson.toString());
+			/*try (FileWriter fw = new FileWriter(LogContext, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter pout = new PrintWriter(bw)) {
+				pout.println(responseJson.toString());
+			} catch (IOException e) {
+				
+			}*/
+			out.print(responseJson);
+			out.flush();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }
