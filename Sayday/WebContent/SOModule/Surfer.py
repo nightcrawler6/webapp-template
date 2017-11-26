@@ -3,9 +3,6 @@ import lxml.html as magic
 import Utils
 import sys
 
-GOOGLE = "http://www.google.com/search?q=stack+overflow+"
-SUFFIX = "&btnI"
-
 
 class Surfer:
     def __init__(self, debug):
@@ -70,9 +67,11 @@ class Surfer:
 
         return Utils.cleanhtml(title)
 
-    def get_lucky(self, query_question):
+    def get_lucky(self, query_question, service):
         query_question = query_question.replace(" ", "+")
-        url_to_get_lucky = GOOGLE + query_question + SUFFIX
+        PREFIX = service()
+        SUFFIX = Utils.get_feeling_lucky_suffix()
+        url_to_get_lucky = PREFIX + query_question + '&oq' + query_question + SUFFIX
         if self.debug:
             print "BROWSING TO: " + url_to_get_lucky
         get = requests.get(url_to_get_lucky)
@@ -81,7 +80,7 @@ class Surfer:
         bingo2 = None
         try:
             bingo1 = html.xpath("//a[@dir='ltr']/@href")[0].split("=")[1]
-            if "stackoverflow.com" in bingo1:
+            if len(bingo1) != 0:
                 return bingo1
         except:
             if self.debug:
@@ -116,9 +115,18 @@ class Surfer:
 so = Surfer(False)
 
 # user = raw_input("What do you need to know? --> ")
-user = sys.argv[1]
+if len(sys.argv) != 3:
+    print '[Error code #1]: Two few arguments; please specify question and service!'
+    exit(1)
+user_query_search = sys.argv[1]
+user_query_service = sys.argv[2]
 
-lucky_charm = so.get_lucky(user)
+if user_query_service.lower() not in Utils.method_mapping:
+    print '[Error code #2]: invalid or unsupported service!'
+    exit(1)
+
+user_query_service = user_query_service.lower()
+lucky_charm = so.get_lucky(user_query_search, Utils.method_mapping[user_query_service])
 
 so.set_url(lucky_charm)
 
@@ -129,7 +137,7 @@ myanswer = myanswer_tuple[0]
 is_best = myanswer_tuple[1]
 mytags = so.get_topic_tags()
 overall = {}
-overall['user-query'] = user.encode("utf-8")
+overall['user-query'] = user_query_search.encode("utf-8")
 overall['url'] = lucky_charm.encode("utf-8")
 overall['title'] = mytitle if mytitle is None else mytitle.encode("utf-8")
 overall['question'] = myquestion if myquestion is None else myquestion.encode("utf-8")

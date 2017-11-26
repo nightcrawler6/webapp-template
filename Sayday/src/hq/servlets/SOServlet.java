@@ -58,7 +58,10 @@ public class SOServlet extends HttpServlet {
 		StringBuilder b = new StringBuilder();
 		switch(action){
 		case "ask":
-			Process p = Runtime.getRuntime().exec(String.format("python %s %s", PythonContext, query.get("Question")));
+			Process p = Runtime.getRuntime().exec(String.format("python %s %s %s",
+																	PythonContext, 
+																	query.get("Question"),
+																	query.get("Service")));
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 			// read the output from the command

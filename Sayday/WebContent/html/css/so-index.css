@@ -103,3 +103,11 @@ hr {
     margin-left: 5px;
     margin-top: 2px;
 }
+
+.glyphicon:hover{
+	color:#031f0163;
+}
+
+a:not(.navbar-brand){
+	cursor: pointer;
+}
