@@ -122,6 +122,7 @@ function loadStackoverflow(){
 	    			$("#main-header").css('position', 'relative');
 	    			restoreVisibility();
 	    			$('#question-holder').focus();
+	    			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "results-container"]);
 	    		},
 	    		error: function(){
 	    			alert('Request failure');
