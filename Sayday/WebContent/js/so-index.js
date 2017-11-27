@@ -1,21 +1,33 @@
 $(document).ready(function(){
 	$(document).data('page',0);
 	$('#stack-sec').on('click', function(event) {
+		if($(document).data('page') == 0) return;
 		$(document).data('page',0);
 		$('#header-logo').fadeOut(function(){
 			$('#header-logo').attr('src','html/media/so-express.png');
 			$('#header-logo').fadeIn();			
 		});
-		$(document).unbind();
+		$('.panel-primary').fadeOut(function(){
+			$('.panel-primary .panel-heading').css('background-color','#d48a1c85');
+			$('.panel-primary .panel-heading').css('border-color','#d48a1c85');
+			$('.panel-primary').fadeIn();
+		});
+		//$(document).unbind();
 		switchActiveTab(event);
 	});
 	$('#math-sec').on('click', function(event) {
+		if($(document).data('page') == 1) return;
 		$(document).data('page',1);
 		$('#header-logo').fadeOut(function(){
 			$('#header-logo').attr('src','html/media/exchange.png');
 			$('#header-logo').fadeIn();			
 		});
-		$(document).unbind();
+		$('.panel-primary').fadeOut(function(){
+			$('.panel-primary .panel-heading').css('background-color','rgb(115, 174, 226)');
+			$('.panel-primary .panel-heading').css('border-color','rgb(115, 174, 226)');
+			$('.panel-primary').fadeIn();	
+		});
+		//$(document).unbind();
 		switchActiveTab(event);
 	});
 	loadStackoverflow();
