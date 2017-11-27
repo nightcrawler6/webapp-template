@@ -1,0 +1,11 @@
+SO Index
+---------
+
+SO Index is an integrated service which regroups in a highlight fashion an express service to the most popular QnA forums online, such as:
+Stackoverflow, Math.Stackexchange and more dynamic services which can be added with high flexibility.
+
+Requirements:
+-------------
+1) Deployment destination server (was developed using tomcat8)
+2) Python installed on server machine
+3) Python libs including: requests, lxml.html
