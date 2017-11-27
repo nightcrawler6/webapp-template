@@ -106,7 +106,9 @@ function loadStackoverflow(){
 	    			XGlyph.on('click', function(event){
 	    				var initiator = event.target;
 	    				var holder = $(this).parent().parent().parent();
-	    				holder.fadeOut();
+	    				holder.fadeOut(function(){
+	    					holder.remove();	    					
+	    				});
 	    			});
 	    			titleHeading.append(XGlyph);
 	    			var panelBody = $("<div class='panel-body'>" + response.answer + "</div>")
