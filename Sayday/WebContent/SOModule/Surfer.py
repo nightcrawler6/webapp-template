@@ -3,6 +3,14 @@ import lxml.html as magic
 import Utils
 import sys
 
+headers = {
+    'User-Agent': 'Mozilla/5.0\
+    (Macintosh; Intel Mac OS X 10_10_1)\
+    AppleWebKit/537.36\
+    (KHTML, like Gecko)\
+    Chrome/39.0.2171.95\
+    Safari/537.36'
+}
 
 class Surfer:
     def __init__(self, debug):
@@ -18,7 +26,7 @@ class Surfer:
         if Utils.noneorempty(self.url):
             raise NameError('URL was not set properly!')
         if Utils.noneorempty(self.source):
-            self.source = requests.get(self.url).content
+            self.source = requests.get(self.url, headers=headers).content
         return self.source
 
     def get_source_object(self):
@@ -74,7 +82,7 @@ class Surfer:
         url_to_get_lucky = PREFIX + query_question + '&oq' + query_question + SUFFIX
         if self.debug:
             print "BROWSING TO: " + url_to_get_lucky
-        get = requests.get(url_to_get_lucky)
+        get = requests.get(url_to_get_lucky, headers=headers)
         html = magic.fromstring(get.content)
         bingo1 = None
         bingo2 = None
