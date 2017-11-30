@@ -107,6 +107,7 @@ public class SOServlet extends HttpServlet {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
 	}
 

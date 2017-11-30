@@ -111,3 +111,12 @@ hr {
 a:not(.navbar-brand){
 	cursor: pointer;
 }
+
+#error-banner{
+    display:none;
+    width:80%;
+    margin: auto;
+    margin-top: 10px;
+    position:relative;
+    text-align:center;
+}

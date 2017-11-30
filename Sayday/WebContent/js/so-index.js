@@ -139,7 +139,9 @@ function loadStackoverflow(){
 	    			MathJax.Hub.Queue(["Typeset", MathJax.Hub, "results-container"]);
 	    		},
 	    		error: function(){
-	    			alert('Request failure');
+	    			//alert('Request failure');
+	    			$("#error-banner").slideDown("slow").delay( 1200 ).slideUp("slow");
+	    			$('#question-holder').val('');
 	    			restoreVisibility();
 	    			$('#question-holder').focus();
 	    		}
