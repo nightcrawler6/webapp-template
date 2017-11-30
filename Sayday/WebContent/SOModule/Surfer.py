@@ -82,7 +82,7 @@ class Surfer:
         url_to_get_lucky = PREFIX + query_question + '&oq' + query_question + SUFFIX
         if self.debug:
             print "BROWSING TO: " + url_to_get_lucky
-        get = requests.get(url_to_get_lucky, headers=headers)
+        get = requests.get(url_to_get_lucky)
         html = magic.fromstring(get.content)
         bingo1 = None
         bingo2 = None
